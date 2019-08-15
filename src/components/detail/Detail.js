@@ -24,12 +24,29 @@ class Detail extends React.Component {
   };
 
   render() {
-    const { goToListing, detailId } = this.props;
+    const { goToListing } = this.props;
 
     const { data } = this.state;
     console.log('Data from state are', data);
 
-    const { title, servingCount, preparationTime, directions } = data;
+    const {
+      title,
+      servingCount,
+      preparationTime,
+      directions,
+      ingredients = [],
+    } = data;
+
+    const generateIngredientRow = ingredient => {
+      const { name, amount, amountUnit } = ingredient;
+      return (
+        <tr>
+          <td>{name}</td>
+          <td>{amount}</td>
+          <td>{amountUnit}</td>
+        </tr>
+      );
+    };
 
     return (
       <div>
@@ -37,6 +54,18 @@ class Detail extends React.Component {
         <h2>{title}</h2>
         <div>Serving count: {servingCount}</div>
         <div>Preparation time: {preparationTime} seconds</div>
+        <br />
+
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Množství</th>
+            <th>Jednotka</th>
+          </thead>
+          <tbody>{ingredients.map(generateIngredientRow)}</tbody>
+        </table>
+        <br />
+
         <div>{directions}</div>
       </div>
     );
