@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Ingredients from './Ingredients';
+
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
 class Detail extends React.Component {
@@ -37,17 +39,6 @@ class Detail extends React.Component {
       ingredients = [],
     } = data;
 
-    const generateIngredientRow = ingredient => {
-      const { name, amount, amountUnit } = ingredient;
-      return (
-        <tr>
-          <td>{name}</td>
-          <td>{amount}</td>
-          <td>{amountUnit}</td>
-        </tr>
-      );
-    };
-
     return (
       <div>
         <button onClick={goToListing}>Go to Listing</button>
@@ -56,14 +47,7 @@ class Detail extends React.Component {
         <div>Preparation time: {preparationTime} seconds</div>
         <br />
 
-        <table>
-          <thead>
-            <th>Name</th>
-            <th>Množství</th>
-            <th>Jednotka</th>
-          </thead>
-          <tbody>{ingredients.map(generateIngredientRow)}</tbody>
-        </table>
+        <Ingredients ingredients={ingredients} />
         <br />
 
         <div>{directions}</div>
