@@ -10,25 +10,27 @@ class PageSwitcher extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: PAGE_DETAIL,
+      currentPage: PAGE_LISTING,
+      detailId: false,
     };
   }
 
   goToDetail = itemId => {
-    console.log('Go to detail has itemId', itemId);
     this.setState({
       currentPage: PAGE_DETAIL,
+      detailId: itemId,
     });
   };
 
   goToListing = () => {
     this.setState({
       currentPage: PAGE_LISTING,
+      detailId: false,
     });
   };
 
   render() {
-    const { currentPage } = this.state;
+    const { currentPage, detailId } = this.state;
 
     return (
       <div>
@@ -39,7 +41,7 @@ class PageSwitcher extends React.Component {
           <Listing goToDetail={this.goToDetail} />
         )}
         {currentPage === PAGE_DETAIL && (
-          <Detail goToListing={this.goToListing} />
+          <Detail goToListing={this.goToListing} detailId={detailId} />
         )}
       </div>
     );

@@ -7,8 +7,7 @@ class Listing extends React.Component {
     super(props);
 
     this.state = {
-      data: ['One', 'two'],
-      poky: 'doky',
+      data: [],
     };
   }
 
