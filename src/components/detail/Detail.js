@@ -25,14 +25,19 @@ class Detail extends React.Component {
 
   render() {
     const { goToListing, detailId } = this.props;
-    console.log('detailId', detailId);
+
     const { data } = this.state;
     console.log('Data from state are', data);
 
+    const { title, servingCount, preparationTime, directions } = data;
+
     return (
       <div>
-        <h2>This is detail</h2>
         <button onClick={goToListing}>Go to Listing</button>
+        <h2>{title}</h2>
+        <div>Serving count: {servingCount}</div>
+        <div>Preparation time: {preparationTime} seconds</div>
+        <div>{directions}</div>
       </div>
     );
   }
