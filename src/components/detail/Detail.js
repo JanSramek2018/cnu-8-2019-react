@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 
 import RecepieView from './RecepieView';
 import EditView from './EditView';
@@ -42,7 +43,9 @@ class Detail extends React.Component {
 
     return (
       <div>
-        <button onClick={goToListing}>Go to Listing</button>
+        <Button color="success" onClick={goToListing}>
+          Go to Listing
+        </Button>
 
         {currentView === RECEPIE_VIEW && (
           <button

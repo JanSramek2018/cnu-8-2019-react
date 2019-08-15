@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Card, CardBody, CardTitle } from 'reactstrap';
+
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
 class Listing extends React.Component {
@@ -29,6 +31,19 @@ class Listing extends React.Component {
       const output = `Recepie "${title}" preparation time: ${preparationTime}`;
 
       return (
+        <Card
+          key={index}
+          onClick={() => {
+            goToDetail(_id);
+          }}
+        >
+          <CardBody>
+            <CardTitle>{output}</CardTitle>
+          </CardBody>
+        </Card>
+      );
+
+      return (
         <li
           key={index}
           onClick={() => {
@@ -42,7 +57,7 @@ class Listing extends React.Component {
 
     return (
       <div>
-        <ul>{data.map(arrayProcessing)}</ul>
+        <div>{data.map(arrayProcessing)}</div>
       </div>
     );
   }
