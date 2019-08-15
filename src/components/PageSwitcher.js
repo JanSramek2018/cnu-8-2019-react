@@ -30,10 +30,10 @@ class PageSwitcher extends React.Component {
         <h2>This is page Switcher</h2>
         <h3>Currently on page: {currentPage}</h3>
 
-        <button onClick={this.goToListing}>This is cool button</button>
-
         {currentPage === PAGE_LISTING && <Listing />}
-        {currentPage === PAGE_DETAIL && <Detail />}
+        {currentPage === PAGE_DETAIL && (
+          <Detail goToListing={this.goToListing} />
+        )}
       </div>
     );
   }
