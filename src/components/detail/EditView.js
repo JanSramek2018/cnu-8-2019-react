@@ -7,23 +7,39 @@ class EditView extends React.Component {
     super(props);
 
     this.state = {
-      title: props.data.title,
+      dataToUpdate: props.data,
     };
   }
 
   handleChange = event => {
     this.setState({
-      title: event.target.value,
+      dataToUpdate: {
+        ...this.state.dataToUpdate,
+        title: event.target.value,
+      },
     });
   };
 
   submitData = () => {
-    const { title } = this.state;
-    console.log('SUBMITTING', title);
+    const { dataToUpdate } = this.state;
+    console.log('SUBMITTING', dataToUpdate);
+
+    const detailUrl = `${API_URL}${dataToUpdate._id}`;
+
+    fetch(detailUrl, {
+      body: JSON.stringify(dataToUpdate),
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'POST',
+    })
+      .then(response => response.json())
+      .then(resData => console.log('API returned', resData));
   };
 
   render() {
-    const { title } = this.state;
+    const { dataToUpdate } = this.state;
+    const { title } = dataToUpdate;
 
     return (
       <div>
