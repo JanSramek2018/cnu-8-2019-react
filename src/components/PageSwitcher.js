@@ -14,7 +14,12 @@ class PageSwitcher extends React.Component {
     };
   }
 
-  goToDetail = () => {};
+  goToDetail = itemId => {
+    console.log('Go to detail has itemId', itemId);
+    this.setState({
+      currentPage: PAGE_DETAIL,
+    });
+  };
 
   goToListing = () => {
     this.setState({
@@ -30,7 +35,9 @@ class PageSwitcher extends React.Component {
         <h2>This is page Switcher</h2>
         <h3>Currently on page: {currentPage}</h3>
 
-        {currentPage === PAGE_LISTING && <Listing />}
+        {currentPage === PAGE_LISTING && (
+          <Listing goToDetail={this.goToDetail} />
+        )}
         {currentPage === PAGE_DETAIL && (
           <Detail goToListing={this.goToListing} />
         )}

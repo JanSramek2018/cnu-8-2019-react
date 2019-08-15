@@ -2,12 +2,6 @@ import React from 'react';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
-/**
- * What do need
- * Data - DONE
- * output them in a list - DONE
- * add ability to go to detail
- */
 class Listing extends React.Component {
   constructor(props) {
     super(props);
@@ -28,14 +22,23 @@ class Listing extends React.Component {
 
   render() {
     const { data } = this.state;
-    console.log('Data from state are', data);
+    const { goToDetail } = this.props;
 
-    const arrayProcessing = function(item) {
+    const arrayProcessing = function(item, index) {
       const { _id, title, preparationTime } = item;
 
       const output = `Recepie "${title}" preparation time: ${preparationTime}`;
 
-      return <li key={_id}>{output}</li>;
+      return (
+        <li
+          key={index}
+          onClick={() => {
+            goToDetail(_id);
+          }}
+        >
+          {output}
+        </li>
+      );
     };
 
     return (
