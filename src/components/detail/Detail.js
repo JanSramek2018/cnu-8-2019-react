@@ -1,9 +1,12 @@
 import React from 'react';
 
-import Ingredients from './Ingredients';
 import RecepieView from './RecepieView';
+import EditView from './EditView';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
+
+const EDIT_VIEW = 'edit';
+const RECEPIE_VIEW = 'recepie';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -11,6 +14,7 @@ class Detail extends React.Component {
 
     this.state = {
       data: false,
+      currentView: RECEPIE_VIEW,
     };
   }
 
@@ -26,14 +30,42 @@ class Detail extends React.Component {
       });
   };
 
+  switchView = target => {
+    this.setState({
+      currentView: target,
+    });
+  };
+
   render() {
     const { goToListing } = this.props;
-    const { data } = this.state;
+    const { data, currentView } = this.state;
 
     return (
       <div>
         <button onClick={goToListing}>Go to Listing</button>
-        <RecepieView data={data} />
+
+        {currentView === RECEPIE_VIEW && (
+          <button
+            onClick={() => {
+              this.switchView(EDIT_VIEW);
+            }}
+          >
+            Switch to EDIT
+          </button>
+        )}
+
+        {currentView === EDIT_VIEW && (
+          <button
+            onClick={() => {
+              this.switchView(RECEPIE_VIEW);
+            }}
+          >
+            Switch to RECEPIE
+          </button>
+        )}
+
+        {currentView === RECEPIE_VIEW && <RecepieView data={data} />}
+        {currentView === EDIT_VIEW && <EditView data={data} />}
       </div>
     );
   }

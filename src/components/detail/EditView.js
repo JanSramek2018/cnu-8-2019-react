@@ -6,7 +6,7 @@ class EditView extends React.Component {
   render() {
     return (
       <div>
-        <button>Cancel Edit view</button>
+        <h3>EDIT</h3>
       </div>
     );
   }
