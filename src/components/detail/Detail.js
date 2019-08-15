@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Ingredients from './Ingredients';
+import RecepieView from './RecepieView';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
@@ -27,30 +28,12 @@ class Detail extends React.Component {
 
   render() {
     const { goToListing } = this.props;
-
     const { data } = this.state;
-    console.log('Data from state are', data);
-
-    const {
-      title,
-      servingCount,
-      preparationTime,
-      directions,
-      ingredients = [],
-    } = data;
 
     return (
       <div>
         <button onClick={goToListing}>Go to Listing</button>
-        <h2>{title}</h2>
-        <div>Serving count: {servingCount}</div>
-        <div>Preparation time: {preparationTime} seconds</div>
-        <br />
-
-        <Ingredients ingredients={ingredients} />
-        <br />
-
-        <div>{directions}</div>
+        <RecepieView data={data} />
       </div>
     );
   }
