@@ -4,7 +4,7 @@ const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
 /**
  * What do need
- * Data
+ * Data - DONE
  * output them in a list - DONE
  * add ability to go to detail
  */
