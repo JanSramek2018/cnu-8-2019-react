@@ -3,8 +3,8 @@ import React from 'react';
 import Listing from './listing/Listing';
 import Detail from './detail/Detail';
 
-const PAGE_LISTING = 'listing';
-const PAGE_DETAIL = 'detail';
+const PAGE_LISTING = 'Listing';
+const PAGE_DETAIL = 'Detail';
 
 class PageSwitcher extends React.Component {
   constructor(props) {

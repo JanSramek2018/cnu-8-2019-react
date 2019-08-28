@@ -8,9 +8,9 @@ class Ingredients extends React.Component {
       const { name, amount, amountUnit } = ingredient;
       return (
         <tr key={index}>
-          <td>{name}</td>
           <td>{amount}</td>
           <td>{amountUnit}</td>
+          <td>{name}</td>
         </tr>
       );
     };
@@ -19,9 +19,9 @@ class Ingredients extends React.Component {
       <table>
         <thead>
           <tr>
+            <th>Amount</th>
+            <th>Unit</th>
             <th>Name</th>
-            <th>Množství</th>
-            <th>Jednotka</th>
           </tr>
         </thead>
         <tbody>{ingredients.map(generateIngredientRow)}</tbody>

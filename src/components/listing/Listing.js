@@ -25,10 +25,10 @@ class Listing extends React.Component {
     const { data } = this.state;
     const { goToDetail } = this.props;
 
-    const arrayProcessing = function(item, index) {
+    const arrayProcessing = function (item, index) {
       const { _id, title, preparationTime } = item;
 
-      const output = `Recepie "${title}" preparation time: ${preparationTime}`;
+      const output = `Recepie: "${title}" Preparation time: ${(preparationTime - preparationTime % 60) / 60} h ${preparationTime % 60} min`;
 
       return (
         <Card
@@ -43,16 +43,6 @@ class Listing extends React.Component {
         </Card>
       );
 
-      return (
-        <li
-          key={index}
-          onClick={() => {
-            goToDetail(_id);
-          }}
-        >
-          {output}
-        </li>
-      );
     };
 
     return (

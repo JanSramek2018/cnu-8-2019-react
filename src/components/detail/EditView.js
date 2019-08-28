@@ -16,6 +16,7 @@ class EditView extends React.Component {
       dataToUpdate: {
         ...this.state.dataToUpdate,
         title: event.target.value,
+        directions: event.target.value,
       },
     });
   };
@@ -40,6 +41,7 @@ class EditView extends React.Component {
   render() {
     const { dataToUpdate } = this.state;
     const { title } = dataToUpdate;
+    const { directions } = dataToUpdate;
 
     return (
       <div>
@@ -48,6 +50,10 @@ class EditView extends React.Component {
           <div>
             <label>Edit title </label>
             <input type="text" value={title} onChange={this.handleChange} />
+          </div>
+          <div>
+            <label>Edit Description </label>
+            <input type="text" value={directions} onChange={this.handleChange} />
           </div>
           <input type="submit" value="Submit" />
         </form>

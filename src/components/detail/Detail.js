@@ -6,8 +6,8 @@ import EditView from './EditView';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
-const EDIT_VIEW = 'edit';
-const RECEPIE_VIEW = 'recepie';
+const EDIT_VIEW = 'Edit';
+const RECEPIE_VIEW = 'Recepie';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Detail extends React.Component {
 
     return (
       <div>
-        <Button color="success" onClick={goToListing}>
+        <Button color="primary" onClick={goToListing}>
           Go to Listing
         </Button>
 

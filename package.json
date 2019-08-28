@@ -11,9 +11,9 @@
     "reactstrap": "^8.0.1"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,json,css}'"
+    "prettier": "prettier --write src/**/*.{js,jsx,json,css}"
   },
   "eslintConfig": {
     "extends": "react-app"
