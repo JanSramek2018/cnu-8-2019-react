@@ -2,22 +2,30 @@ import React from 'react';
 
 class IngredientsAdd extends React.Component {
 
-  handleIngAddAmount = event => {
-    amount = event.target.value;
-  };
-  handleIngAddAmountUnit = event => {
-    amountUnit = event.target.value;
-  };
-  handleIngAddName = event => {
-    name = event.target.value;
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+     newIngAmount: 'Amount',
+     newIngAmountUnit: 'Unit',
+     newIngName: 'Name',
+    };
+  }
+
+  handleIngAdd = event => {
+    const { name, value } = event.target;
+    this.setState({
+        [name]: value,}, () => {console.log(this.state)});
   };
 
   render() {
-    var amount = "Amount";
-    var amountUnit = "Unit";
-    var name = "Name";
+    const { newIngAmount } = this.state;
+    const { newIngAmountUnit } = this.state;
+    const { newIngName } = this.state;
 
     return (
+      
+
       <table>
       <thead>
         <tr>
@@ -29,10 +37,10 @@ class IngredientsAdd extends React.Component {
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" name="amount" value={amount} onChange={this.handleIngAddAmount} /></td>
-          <td><input type="text" name="amountUnit" value={amountUnit} onChange={this.handleIngAddAmountUnit} /></td>
-          <td><input type="text" name="name" value={name} onChange={this.handleIngAddName} /></td>
-          <td><button onClick={() => this.props.onIngredientAdd(name, amount, amountUnit)}>Add</button></td>
+          <td><input type="text" name="newIngAmount" value={this.state.value} onChange={this.handleIngAdd} /></td>
+          <td><input type="text" name="newIngAmountUnit" value={this.state.value} onChange={this.handleIngAdd} /></td>
+          <td><input type="text" name="newIngName" value={this.state.value} onChange={this.handleIngAdd} /></td>
+          <td><button onClick={() => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName)}>Add</button></td>
         </tr>
       </tbody>
       </table>

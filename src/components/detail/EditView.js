@@ -26,17 +26,25 @@ class EditView extends React.Component {
     });
   };
 
-  handleIngredientAdd = (newName, newAmount, newAmountUnit) => {
-    const _id = Math.floor((Math.random() * 1000) + 1) + "." + newName + "." + newAmount + "." + newAmountUnit;
+  handleIngredientAdd = (newAmount, newAmountUnit, newName) => {
+    const _id = Math.floor((Math.random() * 1000) + 1) + "." + newAmount + "." + newAmountUnit + "." + newName;
     console.log('handling IngredientADd in EDITVIEW id: ' + _id + newName + newAmount + newAmountUnit);
-    
+    const newIngredient =
+    {
+      name: newName,
+      amount: newAmount,
+      amountUnit: newAmountUnit,
+      _id: _id,
+    };
+    const newIngredients = this.state.dataToUpdate.ingredients.push(newIngredient);
+    this.setState({ dataToUpdate: { ...this.state.dataToUpdate, ingredients: newIngredients } }, () => { console.log(this.state.dataToUpdate.ingredients) })
   };
 
   handleDelete = itemId => {
     console.log('handling delete in EDITVIEW id: ' + itemId);
     const newIngredients = this.state.dataToUpdate.ingredients.filter(item => item._id !== itemId);
     console.log(newIngredients);
-    this.setState({ dataToUpdate: { ...this.state.dataToUpdate, ingredients: newIngredients } }, () => {console.log(this.state.dataToUpdate.ingredients)})
+    this.setState({ dataToUpdate: { ...this.state.dataToUpdate, ingredients: newIngredients } }, () => { console.log(this.state.dataToUpdate.ingredients) })
     /*.then(() => console.log(this.state.dataToUpdate.ingredients))
     Zkouska .then, setState je asynchronni, value je jeste undefined
     */;
