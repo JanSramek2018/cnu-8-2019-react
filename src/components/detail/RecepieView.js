@@ -13,6 +13,7 @@ class RecepieView extends React.Component {
       directions,
       ingredients = [],
       lastModifiedDate,
+      sideDish,
     } = data;
 
     return (
@@ -20,6 +21,7 @@ class RecepieView extends React.Component {
         <h2>{title}</h2>
         <div>Serving count: {servingCount}</div>
         <div>Preparation time: {preparationTime} minutes</div>
+        <div>Side dish: {sideDish}</div>
         <br />
 
         <Ingredients ingredients={ingredients} />

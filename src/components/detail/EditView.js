@@ -1,6 +1,7 @@
 import React from 'react';
 import IngredientsEdit from './IngredientsEdit';
 import { isTemplateElement } from '@babel/types';
+import IngredientsAdd from './IngredientsAdd';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
@@ -25,13 +26,20 @@ class EditView extends React.Component {
     });
   };
 
+  handleIngredientAdd = (newName, newAmount, newAmountUnit) => {
+    const _id = Math.floor((Math.random() * 1000) + 1) + "." + newName + "." + newAmount + "." + newAmountUnit;
+    console.log('handling IngredientADd in EDITVIEW id: ' + _id + newName + newAmount + newAmountUnit);
+    
+  };
+
   handleDelete = itemId => {
     console.log('handling delete in EDITVIEW id: ' + itemId);
     const newIngredients = this.state.dataToUpdate.ingredients.filter(item => item._id !== itemId);
     console.log(newIngredients);
-    this.setState({...this.state.dataToUpdate, ingredients: newIngredients});
-    const ingredients = this.state.dataToUpdate.ingredients
-    console.log(ingredients);
+    this.setState({ dataToUpdate: { ...this.state.dataToUpdate, ingredients: newIngredients } }, () => {console.log(this.state.dataToUpdate.ingredients)})
+    /*.then(() => console.log(this.state.dataToUpdate.ingredients))
+    Zkouska .then, setState je asynchronni, value je jeste undefined
+    */;
   };
 
   submitData = () => {
@@ -85,8 +93,10 @@ class EditView extends React.Component {
             <input type="text" name="sideDish" value={sideDish} onChange={this.handleChange} />
           </div>
           <div>
-            <h2>Edit Ingredients</h2>
+            <h2>Edit ingredients</h2>
             <IngredientsEdit ingredients={ingredients} onDelete={this.handleDelete} />
+            <h3>Add new ingredients</h3>
+            <IngredientsAdd ingredients={ingredients} onIngredientAdd={this.handleIngredientAdd} />
             <h2>Edit Description</h2>
             <input type="text" name="directions" value={directions} onChange={this.handleChange} />
           </div>
