@@ -1,8 +1,7 @@
 import React from 'react';
-
 import Ingredients from './Ingredients';
 
-class RecepieView extends React.Component {
+class RecipeView extends React.Component {
   render() {
     const { data } = this.props;
 
@@ -35,4 +34,4 @@ class RecepieView extends React.Component {
   }
 }
 
-export default RecepieView;
+export default RecipeView;

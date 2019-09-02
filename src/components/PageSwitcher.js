@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Listing from './listing/Listing';
 import Detail from './detail/Detail';
 
@@ -36,11 +35,16 @@ class PageSwitcher extends React.Component {
       <div>
         <h2>This is page Switcher</h2>
         <h3>Currently on page: {currentPage}</h3>
+        <button className="btn btn-success">Create new recipe!</button>
+        <br />
 
         {currentPage === PAGE_LISTING && (
           <Listing goToDetail={this.goToDetail} />
         )}
         {currentPage === PAGE_DETAIL && (
+          <Detail goToListing={this.goToListing} detailId={detailId} />
+        )}
+           {currentPage === PAGE_DETAIL && (
           <Detail goToListing={this.goToListing} detailId={detailId} />
         )}
       </div>

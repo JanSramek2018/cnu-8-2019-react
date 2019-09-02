@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Card, CardBody, CardTitle } from 'reactstrap';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
@@ -28,7 +27,7 @@ class Listing extends React.Component {
     const arrayProcessing = function (item, index) {
       const { _id, title, preparationTime } = item;
 
-      const output = `Recepie: "${title}" Preparation time: ${(preparationTime - preparationTime % 60) / 60} h ${preparationTime % 60} min`;
+      const output = `Recipe: "${title}" Preparation time: ${(preparationTime - preparationTime % 60) / 60} h ${preparationTime % 60} min`;
 
       return (
         <Card

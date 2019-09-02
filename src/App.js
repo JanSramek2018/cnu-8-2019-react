@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-
 import Header from './components/Header';
 import PageSwitcher from './components/PageSwitcher';
 
 /**
  * What do we need
- * Listing page - output all recepies - DONE
- * Detail page - print one recepie with all of it's data
+ * Listing page - output all recipes - DONE
+ * Detail page - print one recipe with all of it's data
  * Header - DONE
  * pageSwitcher
  */

@@ -1,6 +1,5 @@
 import React from 'react';
 import IngredientsEdit from './IngredientsEdit';
-import { isTemplateElement } from '@babel/types';
 import IngredientsAdd from './IngredientsAdd';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
@@ -12,8 +11,6 @@ class EditView extends React.Component {
     this.state = {
       dataToUpdate: props.data,
     };
-
-
   }
 
   handleChange = event => {
@@ -67,12 +64,6 @@ class EditView extends React.Component {
     */;
   };
 
-  handleRecipeDelete = itemId => {
-    console.log('handling recipe delete in EDITVIEW id: ' + itemId);
-    const newRecipeDB = this.state.dataToUpdate.filter(item => item._id !== itemId);
-    console.log('creating recipe DB in EDITVIEW id: ' + newRecipeDB);
-  };
-
   submitData = () => {
     const { dataToUpdate } = this.state;
     console.log('SUBMITTING', dataToUpdate);
@@ -102,9 +93,10 @@ class EditView extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.handleRecipeDelete(_id)}>Delete recipe</button>
-        <h3>EDIT</h3>
+        
         <form action="#" onSubmit={this.submitData}>
+        
+        <h3>EDIT</h3>
           <div>
             <h2>Edit Basic info</h2>
             <label>ID </label>
