@@ -40,10 +40,16 @@ class Detail extends React.Component {
     console.log('handling recipe delete in EDITVIEW id: ' + itemId);
     console.log('DataRecipesList ' + this.state.dataRecipesList.length);
     const newRecipeDB = this.state.dataRecipesList.filter(item => item._id !== itemId);
-    console.log('creating recipe DB in EDITVIEW id: ' + newRecipeDB.length);
+    console.log('creating recipe DB in EDITVIEW: ' + newRecipeDB.length);
     this.setState({ dataRecipesList: newRecipeDB }, () => { console.log('Submitting', this.state.dataRecipesList) });
 
-    
+    /* Bohuzel, tady toto se mi nepodarilo rozlousknout... uvedomil jsem si, ze do dataToUpdate nahravame jen vzdy dany 1 recept a je potreba ziskat array receptu (objektu),
+       tak jako v Listing, asi by to slo udelat jen jednou a neduplikovat to, ale kvuli nedostatku casu jsem sel cestou nejmensiho odporu.
+       Podari se mi nacist sadu receptu, vyfiltrovat smazany recept a nahrat novou sadu do variably, ale vubec jsem nemohl prijit na problem s Fetch.
+       Respektive to vypisuje CORS problem (problem s cross-origin-resource-sharing), ktery ale nevypisuje, kdyz saham na data jednotlivych receptu a pripadne mazu, 
+       edituju nebo pridavam ingredience. Proto mi to nedava smysl, ze to nekdy funguje a nekdy ne.
+       CORS problem jsem se pokousel obejit pres nastaveni proxy, ale nepodarilo se mi to. Nasel jsem jeste moznost vyuzit JSONP, ale tu problematiku jsem nestihl precist.
+       */
 
     console.log(API_URL);
     fetch(API_URL, {

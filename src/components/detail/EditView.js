@@ -43,7 +43,7 @@ class EditView extends React.Component {
     a pote jeste dopocitat do zbytku nahodna cisla, ale nakonec funguje pouze 24 mistne nahodne cislo;
     tato funkce neni uplne idealni pro svou nedostatecnou "nahodnost", ale pro working prototype staci */
 
-    _id = generate(24); 
+    _id = generate(24);
     let newIngredient =
     {
       '_id': _id, 'name': newName, 'amount': newAmount, 'amountUnit': newAmountUnit
@@ -80,6 +80,8 @@ class EditView extends React.Component {
       .then(response => response.json())
       .then(resData => console.log('API returned', resData));
   };
+  /* Tento fetch funguje, ale fetch v ramci Detail, ktery ma nahrat novou sadu receptu bez smazaneho receptu uz ne :-/ */
+
 
   render() {
     const { dataToUpdate } = this.state;
@@ -93,10 +95,10 @@ class EditView extends React.Component {
 
     return (
       <div>
-        
+
         <form action="#" onSubmit={this.submitData}>
-        
-        <h3>EDIT</h3>
+
+          <h3>EDIT</h3>
           <div>
             <h2>Edit Basic info</h2>
             <label>ID </label>

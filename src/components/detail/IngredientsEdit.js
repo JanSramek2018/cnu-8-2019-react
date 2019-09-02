@@ -9,7 +9,7 @@ class IngredientsEdit extends React.Component {
     const generateIngredientRow = (ingredient, index) => {
       const { _id, name, amount, amountUnit } = ingredient;
       return (
-        
+
         <tr key={index} value={_id}>
           <td>{amount}</td>
           <td>{amountUnit}</td>
