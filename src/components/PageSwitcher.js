@@ -44,9 +44,6 @@ class PageSwitcher extends React.Component {
         {currentPage === PAGE_DETAIL && (
           <Detail goToListing={this.goToListing} detailId={detailId} />
         )}
-        {currentPage === PAGE_DETAIL && (
-          <Detail goToListing={this.goToListing} detailId={detailId} />
-        )}
       </div>
     );
   }
