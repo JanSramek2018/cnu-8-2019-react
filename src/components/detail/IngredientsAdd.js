@@ -6,7 +6,7 @@ class IngredientsAdd extends React.Component {
     super(props);
 
     this.state = { 
-     newIngAmount: 'Amount',
+     newIngAmount: 0,
      newIngAmountUnit: 'Unit',
      newIngName: 'Name',
     };
@@ -37,7 +37,7 @@ class IngredientsAdd extends React.Component {
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" name="newIngAmount" value={this.state.value} onChange={this.handleIngAdd} /></td>
+          <td><input type="number" name="newIngAmount" value={this.state.value} onChange={this.handleIngAdd} /></td>
           <td><input type="text" name="newIngAmountUnit" value={this.state.value} onChange={this.handleIngAdd} /></td>
           <td><input type="text" name="newIngName" value={this.state.value} onChange={this.handleIngAdd} /></td>
           <td><button onClick={() => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName)}>Add</button></td>

@@ -12,12 +12,12 @@ class EditView extends React.Component {
     this.state = {
       dataToUpdate: props.data,
     };
+
+
   }
 
   handleChange = event => {
-
     const { name, value } = event.target;
-
     this.setState({
       dataToUpdate: {
         ...this.state.dataToUpdate,
@@ -27,16 +27,33 @@ class EditView extends React.Component {
   };
 
   handleIngredientAdd = (newAmount, newAmountUnit, newName) => {
-    const _id = Math.floor((Math.random() * 1000) + 1) + "." + newAmount + "." + newAmountUnit + "." + newName;
-    console.log('handling IngredientADd in EDITVIEW id: ' + _id + newName + newAmount + newAmountUnit);
-    const newIngredient =
-    {
-      name: newName,
-      amount: newAmount,
-      amountUnit: newAmountUnit,
-      _id: _id,
+    newAmount = Number(newAmount);
+    let _id = newAmount + newAmountUnit + newName;
+
+    function generate(n) {
+      var add = 1, max = 12 - add;   // Stack Overflow generator  
+      if (n > max) {
+        return generate(max) + generate(n - max);
+      }
+      max = Math.pow(10, n + add);
+      var min = max / 10;
+      var number = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      return ("" + number).substring(add);
     };
-    const newIngredients = this.state.dataToUpdate.ingredients.push(newIngredient);
+
+    /* Zkousel jsem ruzne kombinace id jako let _id = newAmount + newAmountUnit + newName;
+    a pote jeste dopocitat do zbytku nahodna cisla, ale nakonec funguje pouze 24 mistne nahodne cislo;
+    tato funkce neni uplne idealni pro svou nedostatecnou "nahodnost", ale pro working prototype staci */
+
+    _id = generate(24); 
+    let newIngredient =
+    {
+      '_id': _id, 'name': newName, 'amount': newAmount, 'amountUnit': newAmountUnit
+    };
+    console.log(newIngredient);
+    let newIngredients = this.state.dataToUpdate.ingredients.concat(newIngredient);
+    console.log('test ', newIngredients);
     this.setState({ dataToUpdate: { ...this.state.dataToUpdate, ingredients: newIngredients } }, () => { console.log(this.state.dataToUpdate.ingredients) })
   };
 
