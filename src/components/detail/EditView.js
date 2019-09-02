@@ -67,6 +67,12 @@ class EditView extends React.Component {
     */;
   };
 
+  handleRecipeDelete = itemId => {
+    console.log('handling recipe delete in EDITVIEW id: ' + itemId);
+    const newRecipeDB = this.state.dataToUpdate.filter(item => item._id !== itemId);
+    console.log('creating recipe DB in EDITVIEW id: ' + newRecipeDB);
+  };
+
   submitData = () => {
     const { dataToUpdate } = this.state;
     console.log('SUBMITTING', dataToUpdate);
@@ -96,6 +102,7 @@ class EditView extends React.Component {
 
     return (
       <div>
+        <button onClick={() => this.handleRecipeDelete(_id)}>Delete recipe</button>
         <h3>EDIT</h3>
         <form action="#" onSubmit={this.submitData}>
           <div>

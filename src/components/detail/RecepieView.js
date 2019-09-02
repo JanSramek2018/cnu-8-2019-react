@@ -20,7 +20,7 @@ class RecepieView extends React.Component {
       <>
         <h2>{title}</h2>
         <div>Serving count: {servingCount}</div>
-        <div>Preparation time: {preparationTime} minutes</div>
+        <div>Preparation time: {(preparationTime - preparationTime % 60) / 60} h {preparationTime % 60} min</div>
         <div>Side dish: {sideDish}</div>
         <br />
 
