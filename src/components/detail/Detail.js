@@ -52,7 +52,7 @@ class Detail extends React.Component {
        */
 
     console.log(API_URL);
-    fetch(API_URL, {
+    fetch("/recipes/", {
       body: JSON.stringify(dataRecipesList),
       headers: {
         'content-type': 'application/json',
