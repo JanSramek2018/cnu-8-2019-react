@@ -1,27 +1,10 @@
 import React from 'react';
 import { Card, CardBody, CardTitle } from 'reactstrap';
 
-const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
-
 class Listing extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [],
-    };
-  }
-
-  componentDidMount = () => {
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(dataFromApi => {
-        this.setState({ data: dataFromApi });
-      });
-  };
 
   render() {
-    const { data } = this.state;
+    const { data } = this.props;
     const { goToDetail } = this.props;
 
     const arrayProcessing = function (item, index) {
