@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import { Card, CardBody, CardTitle } from 'reactstrap';
 
 class Listing extends React.Component {
@@ -6,6 +7,7 @@ class Listing extends React.Component {
   render() {
     const { data } = this.props;
     const { goToDetail } = this.props;
+    const { goToNewRecipe } = this.props;
 
     const arrayProcessing = function (item, index) {
       const { _id, title, preparationTime } = item;
@@ -29,6 +31,8 @@ class Listing extends React.Component {
 
     return (
       <div>
+        <Button color="success" onClick={goToNewRecipe}>Create a recipe!</Button>
+        
         <div>{data.map(arrayProcessing)}</div>
       </div>
     );

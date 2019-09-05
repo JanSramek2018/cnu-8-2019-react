@@ -37,7 +37,7 @@ class Detail extends React.Component {
     console.log(JSON.stringify(itemId));
     fetch(detailUrl, {
       method: 'DELETE'
-    })
+    });
     console.log(`Deleted`)
   };
 
@@ -53,6 +53,7 @@ class Detail extends React.Component {
 
   render() {
     const { goToListing } = this.props;
+    /*const { handleRecipeDelete } = this.props;*/
     const { goToListingAfterDelete } = this.props;
     const { data, currentView } = this.state;
     const { detailId } = this.props;
@@ -67,9 +68,9 @@ class Detail extends React.Component {
             <button className="btn btn-danger" onClick={() => {
               this.handleRecipeDelete(detailId);
               goToListingAfterDelete(detailId);
-              }}>Delete recipe</button>
+            }}>Delete recipe</button>
           </>
-      )}
+        )}
 
         {currentView === EDIT_VIEW && (
           <button className="btn btn-primary" onClick={() => { this.switchView(RECIPE_VIEW); }}>Switch to recipe</button>
