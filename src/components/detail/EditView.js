@@ -13,6 +13,16 @@ class EditView extends React.Component {
     };
   }
 
+  create_UUID = () => {
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[x]/g, function (c) {
+      var r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -25,25 +35,7 @@ class EditView extends React.Component {
 
   handleIngredientAdd = (newAmount, newAmountUnit, newName) => {
     newAmount = Number(newAmount);
-    let _id = newAmount + newAmountUnit + newName;
-
-    function generate(n) {
-      var add = 1, max = 12 - add;   // Stack Overflow generator  
-      if (n > max) {
-        return generate(max) + generate(n - max);
-      }
-      max = Math.pow(10, n + add);
-      var min = max / 10;
-      var number = Math.floor(Math.random() * (max - min + 1)) + min;
-
-      return ("" + number).substring(add);
-    };
-
-    /* Zkousel jsem ruzne kombinace id jako let _id = newAmount + newAmountUnit + newName;
-    a pote jeste dopocitat do zbytku nahodna cisla, ale nakonec funguje pouze 24 mistne nahodne cislo;
-    tato funkce neni uplne idealni pro svou nedostatecnou "nahodnost", ale pro working prototype staci */
-
-    _id = generate(24);
+    let _id = this.create_UUID();
     let newIngredient =
     {
       '_id': _id, 'name': newName, 'amount': newAmount, 'amountUnit': newAmountUnit

@@ -12,7 +12,7 @@ class IngredientsEdit extends React.Component {
           <td>{amount}</td>
           <td>{amountUnit}</td>
           <td>{name}</td>
-          <td><button className="btn btn-danger" onClick={() => this.props.onDelete(_id)}>Delete</button></td>
+          <td><button className="btn btn-danger" onClick={() => this.props.onIngredientDelete(_id)}>Delete</button></td>
         </tr>
       );
     };

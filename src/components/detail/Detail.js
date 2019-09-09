@@ -29,22 +29,6 @@ class Detail extends React.Component {
       });
   };
 
-  handleRecipeDelete = itemId => {
-    const { detailId } = this.props;
-    const detailUrl = `${API_URL}${detailId}`;
-    console.log(itemId);
-    console.log(API_URL);
-    console.log(JSON.stringify(itemId));
-    fetch(detailUrl, {
-      method: 'DELETE'
-    });
-    console.log(`Deleted`)
-  };
-
-  /* Nakonec vyreseno pomoci metody DELETE, misto POST nove databaze. Nevim, proc me to nenapadlo driv.
-  Mozna, kdybych si lepe prosel dokumentaci k API Fetch.
-  */
-
   switchView = target => {
     this.setState({
       currentView: target,
@@ -52,11 +36,8 @@ class Detail extends React.Component {
   };
 
   render() {
-    const { goToListing } = this.props;
-    /*const { handleRecipeDelete } = this.props;*/
-    const { goToListingAfterDelete } = this.props;
+    const { goToListing, detailId } = this.props;
     const { data, currentView } = this.state;
-    const { detailId } = this.props;
 
     return (
       <div>
@@ -65,10 +46,7 @@ class Detail extends React.Component {
         {currentView === RECIPE_VIEW && (
           <>
             <button className="btn btn-primary" onClick={() => { this.switchView(EDIT_VIEW) }}>Switch to EDIT</button>
-            <button className="btn btn-danger" onClick={() => {
-              this.handleRecipeDelete(detailId);
-              goToListingAfterDelete(detailId);
-            }}>Delete recipe</button>
+            <button className="btn btn-danger" onClick={() => { this.props.onRecipeDelete(detailId) }}>Delete recipe</button>
           </>
         )}
 

@@ -41,45 +41,24 @@ class PageSwitcher extends React.Component {
     });
   };
 
-  /* Nefunguje fetch delete then fetch get. Musim upravit lokalne pres state
-
-  handleRecipeDelete = itemId => {
-    const { detailId } = this.props;
-    const detailUrl = `${API_URL}${detailId}`;
-    console.log(itemId);
-    console.log(API_URL);
-    console.log(JSON.stringify(itemId));
+  handleRecipeDelete = (itemId) => {
+    const detailUrl = `${API_URL}${itemId}`;
     fetch(detailUrl, {
       method: 'DELETE'
-    }).then.
-    fetch(API_URL,
-      {method: 'get'})
-      .then(response => response.json())
-      .then(dataFromApi => {
-        this.setState({ 
-          data: dataFromApi,
-          currentPage: PAGE_LISTING,
-          detailId: false,
-         });
+    })
+      .then(() => {
+        fetch(API_URL,
+          { method: 'get' })
+          .then(response => response.json())
+          .then(dataFromApi => {
+            this.setState({
+              data: dataFromApi,
+              currentPage: PAGE_LISTING,
+              detailId: false,
+            });
+          });
       });
-    console.log(`Deleted`);
   };
-*/
-
-
-  goToListingAfterDelete = (itemId) => {
-    console.log('GoToListing after delete running', this.state.data);
-    const newRecipeDB = this.state.data.filter(item => item._id !== itemId);
-    this.setState({
-      data: newRecipeDB,
-      currentPage: PAGE_LISTING,
-      detailId: false,
-    }, () => { console.log('Updating state', this.state.data) });
-  };
-
-  /* Myslel jsem, ze pujde rovnou refetchnout API, ale bohuzel se tak nedelo, vubec se nespojilo.
-      Reseno zmenou statu, a API se refreshne po obnoveni stranky*/
-
 
   goToListing = () => {
     console.log('GoToListing running', this.state.data);
@@ -90,8 +69,7 @@ class PageSwitcher extends React.Component {
   };
 
   render() {
-    const { currentPage, detailId } = this.state;
-    const { data } = this.state;
+    const { currentPage, detailId, data } = this.state;
 
     return (
       <div>
@@ -102,14 +80,16 @@ class PageSwitcher extends React.Component {
           <Listing goToDetail={this.goToDetail} data={data} goToNewRecipe={this.goToNewRecipe} />
         )}
         {currentPage === PAGE_DETAIL && (
-          <Detail goToListing={this.goToListing} detailId={detailId} goToListingAfterDelete={this.goToListingAfterDelete} />
+          <Detail goToListing={this.goToListing} detailId={detailId} onRecipeDelete={this.handleRecipeDelete} />
         )}
         {currentPage === PAGE_NEW_RECIPE && (
-          <NewRecipeView goToListing={this.goToListing} />
+          <NewRecipeView goToListing={this.goToListing} goToDetail={this.goToDetail} />
         )}
       </div>
     );
-  }
-}
+  };
+};
+
+
 
 export default PageSwitcher;
