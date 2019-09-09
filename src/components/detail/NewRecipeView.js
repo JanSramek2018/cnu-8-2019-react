@@ -72,7 +72,7 @@ class NewRecipeView extends React.Component {
             'content-type': 'application/json',
             'authority': 'cookbook.jakubricar.cz'
           }
-        })
+        }).then( () => this.props.onNewRecipeCreate(this.state._id));
       })
   };
 
@@ -113,8 +113,9 @@ class NewRecipeView extends React.Component {
           <h2>Edit Description</h2>
           <input type="text" name="directions" value={this.state.directions} onChange={this.handleChange} />
         </div>
-        <Button color="primary" onClick={
-          this.submitData(() => this.props.onNewRecipeCreate(_id))}>Create new recipe</Button>
+        <Button color="primary" onClick={() => {
+          this.submitData()
+          }}>Create new recipe</Button>
       </div>
     );
   }
