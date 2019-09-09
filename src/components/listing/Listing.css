@@ -1,0 +1,15 @@
+.recipeCard {
+    width: 19rem;
+    height: 10rem;
+    margin: 0 0 3vh 0;
+}
+
+.recipeCardTitle{
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+.recipeCardText {
+    font-size: 1rem;
+    text-align: left;
+}

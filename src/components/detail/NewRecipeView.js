@@ -116,7 +116,7 @@ class NewRecipeView extends React.Component {
           <input type="text" name="directions" value={this.state.directions} onChange={this.handleChange} />
         </div>
 
-        <Button color="primary" onClick={this.submitData}>Create new recipe</Button>
+        <Button color="success" onClick={this.submitData}>Create new recipe</Button>
 
       </div>
 

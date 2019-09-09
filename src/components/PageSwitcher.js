@@ -3,8 +3,8 @@ import Listing from './listing/Listing';
 import Detail from './detail/Detail';
 import NewRecipeView from './detail/NewRecipeView';
 
-const PAGE_LISTING = 'Listing';
-const PAGE_DETAIL = 'Detail';
+const PAGE_LISTING = 'Recipes Listing';
+const PAGE_DETAIL = 'Recipe Detail';
 const PAGE_NEW_RECIPE = 'New Recipe';
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
@@ -79,9 +79,9 @@ class PageSwitcher extends React.Component {
     return (
 
       <div>
-        <h2>This is page Switcher</h2>
-        <h3>Currently on page: {currentPage}</h3>
-
+        <div className="pageSwitcherHeading">
+        <h2> {currentPage}</h2>
+        </div>
         {currentPage === PAGE_LISTING && (
           <Listing goToDetail={this.goToDetail} data={data} goToNewRecipe={this.goToNewRecipe} />
         )}

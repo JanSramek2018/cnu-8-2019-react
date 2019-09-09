@@ -110,7 +110,7 @@ class EditView extends React.Component {
           <input type="text" name="directions" value={directions} onChange={this.handleChange} />
         </div>
 
-        <Button color="primary" onClick={this.submitData}>Finish editing</Button>
+        <Button color="success" onClick={this.submitData}>Finish editing</Button>
 
       </div>
 

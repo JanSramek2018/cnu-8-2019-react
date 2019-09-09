@@ -49,7 +49,7 @@ class IngredientsAdd extends React.Component {
             <td><input type="number" name="newIngAmount" value={this.state.newIngAmount} onChange={this.handleIngAdd} /></td>
             <td><input type="text" name="newIngAmountUnit" value={this.state.newIngAmountUnit} onChange={this.handleIngAdd} /></td>
             <td><input type="text" name="newIngName" value={this.state.newIngName} onChange={this.handleIngAdd} /></td>
-            <td><button className="btn btn-primary"
+            <td><button className="btn btn-success"
               onClick={
                 () => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName,
                   this.nullAfterIngAdd())}>Add</button></td>
