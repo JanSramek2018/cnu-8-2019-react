@@ -83,7 +83,7 @@ class PageSwitcher extends React.Component {
           <Detail goToListing={this.goToListing} detailId={detailId} onRecipeDelete={this.handleRecipeDelete} />
         )}
         {currentPage === PAGE_NEW_RECIPE && (
-          <NewRecipeView goToListing={this.goToListing} goToDetail={this.goToDetail} />
+          <NewRecipeView goToListing={this.goToListing} submitdata={this.goToDetail} />
         )}
       </div>
     );
