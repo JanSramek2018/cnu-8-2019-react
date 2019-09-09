@@ -2,6 +2,7 @@ import React from 'react';
 
 class IngredientsAdd extends React.Component {
 
+
   constructor(props) {
     super(props);
 
@@ -16,7 +17,7 @@ class IngredientsAdd extends React.Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-    }, () => { console.log(this.state) });
+    });
   };
 
   nullAfterIngAdd = () => {
@@ -28,14 +29,11 @@ class IngredientsAdd extends React.Component {
   };
 
 
-
   render() {
-    const { newIngAmount } = this.state;
-    const { newIngAmountUnit } = this.state;
-    const { newIngName } = this.state;
+
+    const { newIngAmount, newIngAmountUnit, newIngName } = this.state;
 
     return (
-
 
       <table>
         <thead>
@@ -51,12 +49,14 @@ class IngredientsAdd extends React.Component {
             <td><input type="number" name="newIngAmount" value={this.state.newIngAmount} onChange={this.handleIngAdd} /></td>
             <td><input type="text" name="newIngAmountUnit" value={this.state.newIngAmountUnit} onChange={this.handleIngAdd} /></td>
             <td><input type="text" name="newIngName" value={this.state.newIngName} onChange={this.handleIngAdd} /></td>
-            <td><button className="btn btn-primary" onClick={
-              () => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName,
-                this.nullAfterIngAdd())}>Add</button></td>
+            <td><button className="btn btn-primary"
+              onClick={
+                () => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName,
+                  this.nullAfterIngAdd())}>Add</button></td>
           </tr>
         </tbody>
       </table>
+
     );
   }
 }

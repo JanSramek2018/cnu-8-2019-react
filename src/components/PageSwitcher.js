@@ -10,6 +10,7 @@ const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 
 
 class PageSwitcher extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +42,16 @@ class PageSwitcher extends React.Component {
     });
   };
 
+  goToListing = () => {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(dataFromApi => {
+        this.setState({ data: dataFromApi,
+                        currentPage: PAGE_LISTING,
+                        detailId: false });
+      });
+  };
+
   handleRecipeDelete = (itemId) => {
     const detailUrl = `${API_URL}${itemId}`;
     fetch(detailUrl, {
@@ -60,18 +71,13 @@ class PageSwitcher extends React.Component {
       });
   };
 
-  goToListing = () => {
-    console.log('GoToListing running', this.state.data);
-    this.setState({
-      currentPage: PAGE_LISTING,
-      detailId: false,
-    });
-  };
 
   render() {
+
     const { currentPage, detailId, data } = this.state;
 
     return (
+
       <div>
         <h2>This is page Switcher</h2>
         <h3>Currently on page: {currentPage}</h3>
@@ -79,13 +85,17 @@ class PageSwitcher extends React.Component {
         {currentPage === PAGE_LISTING && (
           <Listing goToDetail={this.goToDetail} data={data} goToNewRecipe={this.goToNewRecipe} />
         )}
+
         {currentPage === PAGE_DETAIL && (
           <Detail goToListing={this.goToListing} detailId={detailId} onRecipeDelete={this.handleRecipeDelete} />
         )}
+
         {currentPage === PAGE_NEW_RECIPE && (
           <NewRecipeView goToListing={this.goToListing} onNewRecipeCreate={this.goToDetail} />
         )}
+
       </div>
+
     );
   };
 };

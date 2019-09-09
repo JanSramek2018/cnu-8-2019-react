@@ -7,7 +7,6 @@ const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 const ingredients = [];
 
 
-
 class NewRecipeView extends React.Component {
   constructor(props) {
     super(props);
@@ -37,8 +36,7 @@ class NewRecipeView extends React.Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-    },
-    );
+    });
   };
 
   handleIngredientAdd = (newAmount, newAmountUnit, newName) => {
@@ -46,19 +44,18 @@ class NewRecipeView extends React.Component {
     let _id = this.create_UUID();
     let newIngredient =
     {
-      '_id': _id, 'name': newName, 'amount': newAmount, 'amountUnit': newAmountUnit
+      '_id': _id,
+      'name': newName,
+      'amount': newAmount,
+      'amountUnit': newAmountUnit
     };
-    console.log(newIngredient);
     let newIngredients = this.state.ingredients.concat(newIngredient);
-    console.log('test ', newIngredients);
-    this.setState({ ingredients: newIngredients }, () => { console.log(this.state.ingredients) })
+    this.setState({ ingredients: newIngredients })
   };
 
   handleIngredientDelete = itemId => {
-    console.log('handling Ingredient delete in EDITVIEW id: ' + itemId);
     const newIngredients = this.state.ingredients.filter(item => item._id !== itemId);
-    console.log(newIngredients);
-    this.setState({ ingredients: newIngredients }, () => { console.log(this.state.ingredients) })
+    this.setState({ ingredients: newIngredients })
   };
 
   submitData = () => {
@@ -72,22 +69,26 @@ class NewRecipeView extends React.Component {
             'content-type': 'application/json',
             'authority': 'cookbook.jakubricar.cz'
           }
-        }).then( () => this.props.onNewRecipeCreate(this.state._id));
+        })
+        .then(response => response.json())
+        .then(() => this.props.onNewRecipeCreate(this.state._id));
       })
   };
 
 
-
-
-
   render() {
+
     const { goToListing } = this.props;
-    const { ingredients, _id } = this.state;
+    const { ingredients } = this.state;
 
     return (
+
       <div>
+
         <Button color="primary" onClick={goToListing}>Go to Listing</Button>
+
         <h3>EDIT</h3>
+
         <div>
           <h2>Edit Basic info</h2>
           <label>Title </label>
@@ -105,6 +106,7 @@ class NewRecipeView extends React.Component {
           <label>Side dish </label>
           <input type="text" name="sideDish" value={this.state.sideDish} onChange={this.handleChange} />
         </div>
+
         <div>
           <h2>Edit ingredients</h2>
           <IngredientsEdit ingredients={ingredients} onIngredientDelete={this.handleIngredientDelete} />
@@ -113,10 +115,11 @@ class NewRecipeView extends React.Component {
           <h2>Edit Description</h2>
           <input type="text" name="directions" value={this.state.directions} onChange={this.handleChange} />
         </div>
-        <Button color="primary" onClick={() => {
-          this.submitData()
-          }}>Create new recipe</Button>
+
+        <Button color="primary" onClick={this.submitData}>Create new recipe</Button>
+
       </div>
+
     );
   }
 }

@@ -1,7 +1,10 @@
 import React from 'react';
 
 class Ingredients extends React.Component {
+
+
   render() {
+
     const { ingredients } = this.props;
 
     const generateIngredientRow = (ingredient, index) => {
@@ -16,6 +19,7 @@ class Ingredients extends React.Component {
     };
 
     return (
+
       <table>
         <thead>
           <tr>
@@ -26,6 +30,7 @@ class Ingredients extends React.Component {
         </thead>
         <tbody>{ingredients.map(generateIngredientRow)}</tbody>
       </table>
+
     );
   }
 }
