@@ -1,4 +1,5 @@
 import React from 'react';
+import { Table } from 'reactstrap';
 
 class Ingredients extends React.Component {
 
