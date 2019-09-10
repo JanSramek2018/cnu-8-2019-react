@@ -107,7 +107,7 @@ class EditView extends React.Component {
             </Col>
             <Col className="d-block">
               <h5>Preparation:</h5>
-              <Input type="text" size="2000" name="directions" value={directions} onChange={this.handleChange} />
+              <Input id="prepInput" type="text" size="1000" name="directions" value={directions} onChange={this.handleChange} />
             </Col>
           </Row>
         </div>

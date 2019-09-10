@@ -112,7 +112,7 @@ class NewRecipeView extends React.Component {
             </Col>
             <Col className="d-block">
               <h5>Preparation:</h5>
-              <Input type="text" size="2000" name="directions" value={this.state.directions} onChange={this.handleChange} />
+              <Input type="text" id="prepInput" size="2000" name="directions" value={this.state.directions} onChange={this.handleChange} />
             </Col>
           </Row>
         </div>
