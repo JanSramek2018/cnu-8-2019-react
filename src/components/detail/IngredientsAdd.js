@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Input, Table } from 'reactstrap';
 
 class IngredientsAdd extends React.Component {
 
@@ -35,7 +36,7 @@ class IngredientsAdd extends React.Component {
 
     return (
 
-      <table>
+      <Table size="sm">
         <thead>
           <tr>
             <th>Amount</th>
@@ -46,16 +47,16 @@ class IngredientsAdd extends React.Component {
         </thead>
         <tbody>
           <tr>
-            <td><input type="number" name="newIngAmount" value={this.state.newIngAmount} onChange={this.handleIngAdd} /></td>
-            <td><input type="text" name="newIngAmountUnit" value={this.state.newIngAmountUnit} onChange={this.handleIngAdd} /></td>
-            <td><input type="text" name="newIngName" value={this.state.newIngName} onChange={this.handleIngAdd} /></td>
-            <td><button className="btn btn-success"
+            <td><Input type="number" name="newIngAmount" value={this.state.newIngAmount} onChange={this.handleIngAdd} /></td>
+            <td><Input type="text" name="newIngAmountUnit" value={this.state.newIngAmountUnit} onChange={this.handleIngAdd} /></td>
+            <td><Input type="text" name="newIngName" value={this.state.newIngName} onChange={this.handleIngAdd} /></td>
+            <td><Button outline color="success"
               onClick={
                 () => this.props.onIngredientAdd(newIngAmount, newIngAmountUnit, newIngName,
-                  this.nullAfterIngAdd())}>Add</button></td>
+                  this.nullAfterIngAdd())}>Add</Button></td>
           </tr>
         </tbody>
-      </table>
+      </Table>
 
     );
   }

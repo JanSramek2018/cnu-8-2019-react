@@ -46,9 +46,11 @@ class PageSwitcher extends React.Component {
     fetch(API_URL)
       .then(response => response.json())
       .then(dataFromApi => {
-        this.setState({ data: dataFromApi,
-                        currentPage: PAGE_LISTING,
-                        detailId: false });
+        this.setState({
+          data: dataFromApi,
+          currentPage: PAGE_LISTING,
+          detailId: false
+        });
       });
   };
 
@@ -78,9 +80,9 @@ class PageSwitcher extends React.Component {
 
     return (
 
-      <div>
-        <div className="pageSwitcherHeading">
-        <h2> {currentPage}</h2>
+      <div className="container-fluid">
+        <div className="pageSwitcherHeading d-flex d-inline justify-content-start  ml-3">
+          <h4 className=""> {currentPage}</h4>
         </div>
         {currentPage === PAGE_LISTING && (
           <Listing goToDetail={this.goToDetail} data={data} goToNewRecipe={this.goToNewRecipe} />

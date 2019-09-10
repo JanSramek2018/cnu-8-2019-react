@@ -1,6 +1,7 @@
 .mainNavBar {
     background-color: rgb(165, 175, 218);
     color: black;
+    z-index: +2;
   }
 
   .mainNavBarNavItem{

@@ -20,7 +20,7 @@ class Ingredients extends React.Component {
 
     return (
 
-      <table>
+      <Table size="sm">
         <thead>
           <tr>
             <th>Amount</th>
@@ -29,7 +29,7 @@ class Ingredients extends React.Component {
           </tr>
         </thead>
         <tbody>{ingredients.map(generateIngredientRow)}</tbody>
-      </table>
+      </Table>
 
     );
   }

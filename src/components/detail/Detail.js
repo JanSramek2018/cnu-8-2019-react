@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container, Row } from 'reactstrap';
 import RecipeView from './RecipeView';
 import EditView from './EditView';
 
@@ -40,9 +40,11 @@ class Detail extends React.Component {
     fetch(detailUrl)
       .then(response => response.json())
       .then(dataFromApi => {
-        this.setState({ data: dataFromApi,
-                        currentView: RECIPE_VIEW,
-                        detailId: itemId, });
+        this.setState({
+          data: dataFromApi,
+          currentView: RECIPE_VIEW,
+          detailId: itemId,
+        });
       });
   };
 
@@ -53,21 +55,27 @@ class Detail extends React.Component {
     return (
 
       <div>
-        <Button color="primary" onClick={goToListing}>Go to Listing</Button>
+        <Container fluid className="p-5">
+          <Row className="d-block">
+            <Button className="mr-2" outline color="primary" onClick={goToListing}>Go to Listing</Button>
 
-        {currentView === RECIPE_VIEW && (
-          <>
-            <button className="btn btn-primary" onClick={() => { this.switchView(EDIT_VIEW) }}>Switch to EDIT</button>
-            <button className="btn btn-danger" onClick={() => { this.props.onRecipeDelete(detailId) }}>Delete recipe</button>
-          </>
-        )}
+            {currentView === RECIPE_VIEW && (
+              <div className="d-inline">
+                <Button outline color="primary" onClick={() => { this.switchView(EDIT_VIEW) }}>Switch to EDIT</Button>
+                <Button className="ml-2" outline color="danger" onClick={() => { this.props.onRecipeDelete(detailId) }}>Delete recipe</Button>
+              </div>
+            )}
 
-        {currentView === EDIT_VIEW && (
-          <button className="btn btn-primary" onClick={() => { this.switchView(RECIPE_VIEW); }}>Switch to recipe</button>
-        )}
+            {currentView === EDIT_VIEW && (
+              <Button outline color="primary" onClick={() => { this.switchView(RECIPE_VIEW); }}>Switch to recipe</Button>
+            )}
+          </Row>
 
-        {currentView === RECIPE_VIEW && <RecipeView data={data} />}
-        {currentView === EDIT_VIEW && <EditView data={data} onRecipeEdit={this.switchToRecipeView}/>}
+          <Row className="block mt-5">
+            {currentView === RECIPE_VIEW && <RecipeView data={data} />}
+            {currentView === EDIT_VIEW && <EditView data={data} onRecipeEdit={this.switchToRecipeView} />}
+          </Row>
+        </Container>
       </div>
 
     );

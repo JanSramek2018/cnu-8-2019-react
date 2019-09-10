@@ -15,7 +15,7 @@ class Listing extends React.Component {
       const cardText = `${(preparationTime - preparationTime % 60) / 60} h ${preparationTime % 60} min`;
 
       return (
-        <Col sm={12} md={6} lg={3}>
+        <Col sm={6} lg={4} xl={2}>
           <Card className="recipeCard" key={index} onClick={() => { goToDetail(_id); }}>
             <CardBody className="">
               <CardTitle className="recipeCardTitle">{title}</CardTitle>
@@ -27,14 +27,16 @@ class Listing extends React.Component {
     };
 
     return (
-      <>
-        <Button color="success" onClick={goToNewRecipe}>Create a recipe!</Button>
+      <div>
+        <div className="d-flex d-inline justify-content-center">
+          <Button outline color="success" onClick={goToNewRecipe}>Create a new recipe!</Button>
+        </div>
         <Container fluid className="d-flex d-block justify-content-center p-5">
           <Row>
             {data.map(arrayProcessing)}
           </Row>
         </Container>
-      </>
+      </div>
 
     );
   }

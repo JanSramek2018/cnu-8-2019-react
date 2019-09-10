@@ -1,7 +1,7 @@
 import React from 'react';
 import IngredientsEdit from './IngredientsEdit';
 import IngredientsAdd from './IngredientsAdd';
-import { Button } from 'reactstrap';
+import { Button, Row, Col, Label, Input } from 'reactstrap';
 
 const API_URL = 'https://cookbook.jakubricar.cz/api/recipes/';
 const ingredients = [];
@@ -70,8 +70,8 @@ class NewRecipeView extends React.Component {
             'authority': 'cookbook.jakubricar.cz'
           }
         })
-        .then(response => response.json())
-        .then(() => this.props.onNewRecipeCreate(this.state._id));
+          .then(response => response.json())
+          .then(() => this.props.onNewRecipeCreate(this.state._id));
       })
   };
 
@@ -83,41 +83,40 @@ class NewRecipeView extends React.Component {
 
     return (
 
-      <div>
+      <div className="container-fluid">
 
-        <Button color="primary" onClick={goToListing}>Go to Listing</Button>
+        <Button outline color="primary" onClick={goToListing}>Go to Listing</Button>
 
-        <h3>EDIT</h3>
+        <h3 className="container-fluid d-block text-left">Create recipe</h3>
+        <h5 className="container-fluid d-block text-left">
+          <Label>Title: </Label> <Input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+        </h5>
 
-        <div>
-          <h2>Edit Basic info</h2>
-          <label>Title </label>
-          <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+        <div className="container-fluid d-block text-left">
+          <Label>Number of portinons:</Label><Input type="text" name="servingCount" value={this.state.servingCount} onChange={this.handleChange} />
         </div>
-        <div>
-          <label>Preparation time </label>
-          <input type="text" name="preparationTime" value={this.state.preparationTime} onChange={this.handleChange} />
+        <div className="container-fluid d-block text-left">
+          <Label>Preparation time: </Label><Input type="text" name="preparationTime" value={this.state.preparationTime} onChange={this.handleChange} />
         </div>
-        <div>
-          <label>Number of portions </label>
-          <input type="text" name="servingCount" value={this.state.servingCount} onChange={this.handleChange} />
-        </div>
-        <div>
-          <label>Side dish </label>
-          <input type="text" name="sideDish" value={this.state.sideDish} onChange={this.handleChange} />
+        <div className="container-fluid d-block text-left">
+          <Label>Side dish: </Label><Input type="text" name="sideDish" value={this.state.sideDish} onChange={this.handleChange} />
         </div>
 
-        <div>
-          <h2>Edit ingredients</h2>
-          <IngredientsEdit ingredients={ingredients} onIngredientDelete={this.handleIngredientDelete} />
-          <h3>Add new ingredients</h3>
-          <IngredientsAdd ingredients={ingredients} onIngredientAdd={this.handleIngredientAdd} />
-          <h2>Edit Description</h2>
-          <input type="text" name="directions" value={this.state.directions} onChange={this.handleChange} />
+        <div className="container-fluid justify-content-start d-flex mt-3 text-left">
+          <Row>
+            <Col>
+              <h5>Delete Ingredients:</h5>
+              <IngredientsEdit ingredients={ingredients} onIngredientDelete={this.handleIngredientDelete} />
+              <h5>Add new ingredients</h5>
+              <IngredientsAdd ingredients={ingredients} onIngredientAdd={this.handleIngredientAdd} />
+            </Col>
+            <Col className="d-block">
+              <h5>Preparation:</h5>
+              <Input type="text" size="2000" name="directions" value={this.state.directions} onChange={this.handleChange} />
+            </Col>
+          </Row>
         </div>
-
-        <Button color="success" onClick={this.submitData}>Create new recipe</Button>
-
+        <div className="container-fluid d-block text-center mt-5"><Button outline color="success" onClick={this.submitData}>Create new recipe</Button></div>
       </div>
 
     );

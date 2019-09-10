@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Table } from 'reactstrap';
 
 class IngredientsEdit extends React.Component {
 
@@ -14,14 +15,14 @@ class IngredientsEdit extends React.Component {
             <td>{amount}</td>
             <td>{amountUnit}</td>
             <td>{name}</td>
-            <td><button className="btn btn-danger" onClick={() => this.props.onIngredientDelete(_id)}>Delete</button></td>
+            <td><Button outline color="danger" onClick={() => this.props.onIngredientDelete(_id)}>Delete</Button></td>
           </tr>
         );
       };
     };
 
     return (
-      <table>
+      <Table size="sm">
         <thead>
           <tr>
             <th>Amount</th>
@@ -31,8 +32,8 @@ class IngredientsEdit extends React.Component {
           </tr>
         </thead>
         <tbody>{ingredients.map(generateIngredientRow)}</tbody>
-      </table >
-      
+      </Table >
+
     );
   }
 }
